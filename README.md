@@ -46,11 +46,12 @@ Crie um arquivo .env na raiz do projeto e configure as variáveis de ambiente pa
 ## Contribuindo
 Agradecemos sua contribuição! Para contribuir com o projeto, siga estes passos:
 
-Fork o repositório.
-Crie uma nova branch.
-Faça suas alterações e commit.
-Envie um pull request.
-Licença
+* Fork o repositório.
+* Crie uma nova branch.
+* Faça suas alterações e commit.
+* Envie um pull request.
+
+Licença:
 Este projeto está licenciado sob a licença MIT.
 
 Autores
