@@ -30,7 +30,7 @@ ImobiManager é uma API RESTful desenvolvida em Node.js e TypeScript para gerenc
 
 1. **Clone o repositório:**
    ```bash
-   git clone (https://github.com/DanielSantanaSilva/Imobi-Manager-Api.git)
+   git clone https://github.com/DanielSantanaSilva/Imobi-Manager-Api.git
 
 2. **Instale as dependências:**
    ```bash
