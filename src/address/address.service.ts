@@ -45,6 +45,15 @@ export class AddressService {
     }
   }
 
+
+  async remove(id: number): Promise<void> {
+    const address = await this.addressRepository.findOne({ where: { id } });
+    if (address) {
+      await this.addressRepository.remove(address);
+    }
+  }
+  
+
   // Função para salvar o endereço no banco de dados
   async save(address: CreateAddressDto): Promise<Address> {
     if (!address.street || address.street.trim() === '') {

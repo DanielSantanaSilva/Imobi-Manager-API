@@ -11,13 +11,13 @@ export class Property {
   @Column({ type: 'varchar', length: 255, nullable: false })
   name: string;
 
-  @ManyToOne(() => Constructor, (constructor) => constructor.properties)
+  @ManyToOne(() => Constructor, (constructor) => constructor.properties, { onDelete: 'CASCADE' }) // Cascata para propriedades associadas
   @JoinColumn({ name: 'constructor_id' })
   propertyConstructor: Constructor;
 
   @Column({ type: 'decimal', nullable: false })
   price: number;
-  
+
   @Column({ type: 'int', nullable: false })
   bedrooms: number;
 
@@ -30,7 +30,7 @@ export class Property {
   @OneToMany(() => Attachment, (attachment) => attachment.property, { cascade: true })
   attachments: Attachment[];
 
-  @OneToOne(() => Address, { eager: true, nullable: true })
+  @OneToOne(() => Address, { eager: true, nullable: false, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'address_id' })
   address: Address;
 }

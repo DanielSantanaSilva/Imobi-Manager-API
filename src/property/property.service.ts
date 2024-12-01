@@ -101,13 +101,24 @@ export class PropertyService {
 
   // Função para remover uma propriedade
   async remove(id: number): Promise<{ message: string }> {
-    const property = await this.propertyRepository.findOne({ where: { id } });
+    const property = await this.propertyRepository.findOne({
+      where: { id },
+      relations: ['address'], // Carregar o endereço associado
+    });
+  
     if (!property) {
       throw new NotFoundException('Propriedade não encontrada');
     }
-
+  
+    // Remover o endereço associado, se existir
+    if (property.address) {
+      await this.addressService.remove(property.address.id);
+    }
+  
+    // Remover a propriedade
     await this.propertyRepository.remove(property);
-    return { message: 'Propriedade removida com sucesso' };
+  
+    return { message: 'Propriedade e endereço associados removidos com sucesso' };
   }
 
 }
