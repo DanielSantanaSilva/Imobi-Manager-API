@@ -2,8 +2,8 @@ import { Controller, Post, Body, Get, Param, Delete, Query, Put } from '@nestjs/
 import { PropertyService } from './property.service';
 import { CreatePropertyDto } from '../dtos/create-property.dto';
 import { ConstructorService } from '../constructor/constructor.service';
-import { NotFoundException, BadRequestException } from '@nestjs/common';
-import { FilterPropertyDto } from 'src/dtos/filter-property-dto';
+import { NotFoundException } from '@nestjs/common';
+import { FilterPropertyDto } from '../dtos/filter-property-dto';
 import { AddressService } from '../address/address.service';
 import { Property } from 'src/entities/property.entity';
 

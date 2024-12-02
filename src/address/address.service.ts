@@ -3,7 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { lastValueFrom } from 'rxjs';
-import { Address } from 'src/entities/address.entity';
+import { Address } from '../entities/address.entity';
 import { CreateAddressDto } from 'src/dtos/create-address.dto';
 
 @Injectable()
