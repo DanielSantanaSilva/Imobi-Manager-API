@@ -67,27 +67,28 @@ export class PropertyService {
 
   // Função para buscar todas as propriedades com filtros
   async findAll(filter: FilterPropertyDto): Promise<Property[]> {
-    const queryBuilder = this.propertyRepository.createQueryBuilder('property');
-  
-    // Aplica os filtros de preço, quartos e banheiros se estiverem presentes
+    const query = this.propertyRepository.createQueryBuilder('property');
+
+    // Filtros opcionais
     if (filter.priceMin) {
-      queryBuilder.andWhere('property.price >= :priceMin', { priceMin: filter.priceMin });
+        query.andWhere('property.price >= :priceMin', { priceMin: filter.priceMin });
     }
-  
     if (filter.priceMax) {
-      queryBuilder.andWhere('property.price <= :priceMax', { priceMax: filter.priceMax });
+        query.andWhere('property.price <= :priceMax', { priceMax: filter.priceMax });
     }
-  
     if (filter.bedrooms) {
-      queryBuilder.andWhere('property.bedrooms = :bedrooms', { bedrooms: filter.bedrooms });
+        query.andWhere('property.bedrooms = :bedrooms', { bedrooms: filter.bedrooms });
     }
-  
     if (filter.bathrooms) {
-      queryBuilder.andWhere('property.bathrooms = :bathrooms', { bathrooms: filter.bathrooms });
+        query.andWhere('property.bathrooms = :bathrooms', { bathrooms: filter.bathrooms });
     }
-  
-    return queryBuilder.getMany();
-  }
+
+    // Relacione o endereço
+    query.leftJoinAndSelect('property.address', 'address');
+
+    return query.getMany();
+}
+
   
 
   // Função para buscar uma propriedade pelo ID
